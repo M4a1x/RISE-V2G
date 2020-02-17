@@ -175,11 +175,11 @@ public final class EXIficientCodec extends ExiCodec {
 		else exiFactory.setGrammars(grammarMsgDef);
 		
 		try {
-			EXISource saxSource = new EXISource(exiFactory);
-			SAXSource exiSource = new SAXSource(new InputSource(exiInputStream));
-			XMLReader exiReader = saxSource.getXMLReader();
-			exiSource.setXMLReader(exiReader);
-			transformer.transform(exiSource, new StreamResult(stringWriter));
+			EXISource exiSource = new EXISource(exiFactory);
+			SAXSource saxSource = new SAXSource(new InputSource(exiInputStream));
+			XMLReader exiReader = exiSource.getXMLReader();
+			saxSource.setXMLReader(exiReader);
+			transformer.transform(saxSource, new StreamResult(stringWriter));
 		} catch (EXIException e) {
 			getLogger().error("Error occurred while trying to decode (EXIException)", e);
 		} catch (TransformerException e) {
